@@ -1,5 +1,79 @@
-html,
-body {
+@viewport { width: device-width }
+
+html, body {
   margin: 0;
   padding: 0;
+  touch-action: manipulation;
+  -ms-user-select: none;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.bead {
+  height: 70px;
+  width: 40px;
+}
+
+.heavenlyBead {
+  height: 100px;
+  fill: red;
+}
+
+.earthlyBead {
+  margin-top: -30px;
+  fill: black;
+}
+
+.beadDown {
+  transition: transform 0.25s, fill 0.5s;
+  transform: translate(0, 30px);
+}
+
+.beadUp {
+  transition: transform 0.25s, fill 0.5s;
+  transform: translate(0, 0);
+}
+
+.beadSet {
+}
+
+.beadUnset {
+  fill: white;
+}
+
+.soroban {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.rod {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comma, .digit {
+  font-size: 40px;
+  text-align: center;
+  color: lightgray;
+}
+
+.comma {
+  float: left;
+  width: 15px;
+  height: 100%;
+  padding-top: 260px;
+  text-align: bottom;
+}
+
+.digit {
+  height: 40px;
+}
+
+.hidden {
+  visibility: hidden;
 }
