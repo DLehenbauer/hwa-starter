@@ -1,7 +1,7 @@
 {
   "lang": "en",
-  "name": "Windows HWA Starter Pack",
-  "short_name": "StarterPack",
+  "name": "Digital Soroban",
+  "short_name": "Soroban",
   "icons": [{
     "src": "img/icons/Icon@44w.png",
     "sizes": "44x44",
