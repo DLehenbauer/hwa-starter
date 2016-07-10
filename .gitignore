@@ -1,3 +1,5 @@
-node_modules/
-tmp/
+/StarterPack/
+/node_modules/
+/tmp/
 npm-debug.log
+/dist/

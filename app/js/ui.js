@@ -122,7 +122,7 @@ const Model = require('./model');
             let say = (text) => {};
 
             if (typeof Windows !== 'undefined') {
-                const audio = new Audio();
+                const audio = document.getElementById('audio');
                 const synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
                 say = (text) => {
                     const ssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'><say-as interpret-as="cardinal">${text}</say-as></speak>`;
@@ -167,7 +167,7 @@ const Model = require('./model');
                     heavenly = !heavenly;
                     break;
                 default:
-                    earthly = value >= bead
+                    earthly = earthly >= bead
                         ? bead - 1
                         : bead;
                     break;
@@ -212,9 +212,11 @@ const Model = require('./model');
 
                 const result = [];
                 
-                if (this.getShouldInsertComma(foundNonZero, index)) {
+                if (this.getShouldInsertComma(true, index)) {
                     const commaClassName = 'comma' +
-                        (foundNonZero ? '' : ' hidden');
+                        (foundNonZero
+                            ? ''
+                            : ' hidden');
                     result.push(<div className={commaClassName}>,</div>)
                 }
 
@@ -226,67 +228,8 @@ const Model = require('./model');
 
             this.state.say(this.getValue());
 
-            return (<div><span className="soroban">{rods}</span><span>{this.getValueInEnglish()}</span></div>);
-        },
-
-        getValueInEnglish: function () {
-            function intToEnglish(value) {
-                switch (value) {
-                    case 19: return "nineteen";
-                    case 18: return "eighteen";
-                    case 17: return "seventeen";
-                    case 16: return "sixteen";
-                    case 15: return "fifteen";
-                    case 14: return "fourteen";
-                    case 13: return "thirteen";
-                    case 12: return "twelve";
-                    case 11: return "eleven";
-                    case 10: return "ten";
-                    case 9: return "nine";
-                    case 8: return "eight";
-                    case 7: return "seven";
-                    case 6: return "six";
-                    case 5: return "five";
-                    case 4: return "four";
-                    case 3: return "three";
-                    case 2: return "two";
-                    case 1: return "one";
-                };
-
-                const NS = [
-                    {value: 1000000000000000000000, str: "sextillion"},
-                    {value: 1000000000000000000, str: "quintillion"},
-                    {value: 1000000000000000, str: "quadrillion"},
-                    {value: 1000000000000, str: "trillion"},
-                    {value: 1000000000, str: "billion"},
-                    {value: 1000000, str: "million"},
-                    {value: 1000, str: "thousand"},
-                    {value: 100, str: "hundred"},
-                    {value: 90, str: "ninety"},
-                    {value: 80, str: "eighty"},
-                    {value: 70, str: "seventy"},
-                    {value: 60, str: "sixty"},
-                    {value: 50, str: "fifty"},
-                    {value: 40, str: "forty"},
-                    {value: 30, str: "thirty"},
-                    {value: 20, str: "twenty"},
-                ];
-
-                for (var n of NS) {
-                    if (value >= n.value){
-                        var t = Math.floor(value / n.value);
-                        var d = value % n.value;
-                        if( d > 0 ){
-                            return intToEnglish(t) + ' ' + n.str + ' ' + intToEnglish(d);
-                        } else {
-                            return intToEnglish(t) + ' ' + n.str;
-                        }
-                    }
-                }
-            }
-            
-            return intToEnglish(this.getValue());
-        }            
+            return (<div><span className="soroban">{rods}</span></div>);
+        }
     });
 
     module.exports = {
